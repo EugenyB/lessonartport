@@ -3,17 +3,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head></h:head>
 <h:body>
-   <h:dataTable value="#{counterpartyBean.counterparties}" var="c">
-      <h:column>
-         #{c.id}
-      </h:column>
-      <h:column>
-         #{c.description}
-      </h:column>
-   </h:dataTable>
+   <h:outputLink value="counterparties.xhtml">Контрагенты</h:outputLink> <br/>
+   <h:outputLink value="receiptorders.xhtml">Receipt Orders</h:outputLink>
 </h:body>
 </html>

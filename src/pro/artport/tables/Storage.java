@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class Storage {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 

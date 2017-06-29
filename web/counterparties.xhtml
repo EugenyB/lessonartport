@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head></h:head>
+<h:body>
+   <h:outputLink value="receiptorders.xhtml">Receipt Orders</h:outputLink>
+   <h:form>
+      <h:panelGrid columns="2" cellpadding="5">
+         <p:outputLabel value="Наименование" for="description"/>
+      <p:inputText id="description" value="#{counterpartyBean.counterparty.description}"/>
+         <p:outputLabel value="Код" for="code"/>
+         <p:inputText id="code" value="#{counterpartyBean.counterparty.code}" />
+      </h:panelGrid>
+      <p:commandButton value="Добавить" action="#{counterpartyBean.add}"/>
+   </h:form>
+   <p:dataTable value="#{counterpartyBean.counterparties}" var="c">
+      <p:column headerText="id">
+         <h:outputText value="#{c.id}"/>
+      </p:column>
+      <p:column headerText="description">
+         <h:outputText value="#{c.description}"/>
+      </p:column>
+   </p:dataTable>
+</h:body>
+</html>

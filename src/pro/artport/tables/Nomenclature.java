@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class Nomenclature {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 
@@ -106,6 +106,6 @@ public class Nomenclature {
 
     @Override
     public String toString() {
-        return "("+ code + ") " + description;
+        return String.format("(%s) %s", code, description);
     }
 }

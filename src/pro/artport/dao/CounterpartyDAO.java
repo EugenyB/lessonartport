@@ -10,9 +10,15 @@ import java.util.List;
 @Stateless
 public class CounterpartyDAO {
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
+    @SuppressWarnings("unchecked")
     public List<Counterparty> findAll() {
-        return em.createQuery("select c from Counterparty c").getResultList();
+//        return em.createQuery("select c from Counterparty c").getResultList();
+        return em.createNamedQuery("Counterparty.FindAll").getResultList();
+    }
+
+    public void add(Counterparty counterparty) {
+        em.persist(counterparty);
     }
 }

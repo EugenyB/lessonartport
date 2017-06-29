@@ -4,8 +4,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "ReceiptOrder.FindAll", query = "select r from ReceiptOrder r")
+})
 public class ReceiptOrder {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 

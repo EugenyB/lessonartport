@@ -5,8 +5,11 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Counterparty.FindAll", query="select c from Counterparty c")
+})
 public class Counterparty {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 
