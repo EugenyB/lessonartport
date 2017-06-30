@@ -6,7 +6,8 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Counterparty.FindAll", query="select c from Counterparty c")
+        @NamedQuery(name = "Counterparty.FindAll", query="select c from Counterparty c"),
+        @NamedQuery(name = "Counterparty.FindAllFolders", query = "select c from Counterparty c where c.folder=true")
 })
 public class Counterparty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +21,10 @@ public class Counterparty {
     private String code;
 
     @Basic
-    private Boolean marked;
+    private boolean marked;
 
     @Basic
-    private Boolean folder;
+    private boolean folder;
 
     public Counterparty() {
     }
@@ -56,19 +57,19 @@ public class Counterparty {
         this.code = code;
     }
 
-    public Boolean getMarked() {
+    public boolean isMarked() {
         return marked;
     }
 
-    public void setMarked(Boolean marked) {
+    public void setMarked(boolean marked) {
         this.marked = marked;
     }
 
-    public Boolean isFolder() {
+    public boolean getFolder() {
         return folder;
     }
 
-    public void setFolder(Boolean folder) {
+    public void setFolder(boolean folder) {
         this.folder = folder;
     }
 
@@ -121,5 +122,9 @@ public class Counterparty {
 
     public void setOrders(Collection<ReceiptOrder> orders) {
         this.orders = orders;
+    }
+
+    public boolean isFolder() {
+        return folder;
     }
 }

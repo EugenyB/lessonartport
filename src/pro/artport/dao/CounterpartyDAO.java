@@ -21,4 +21,23 @@ public class CounterpartyDAO {
     public void add(Counterparty counterparty) {
         em.persist(counterparty);
     }
+
+    public Counterparty find(int id) {
+        return em.find(Counterparty.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Counterparty> findAllFolders() {
+        return em.createNamedQuery("Counterparty.FindAllFolders").getResultList();
+    }
+
+//    public void add(Counterparty counterparty, Counterparty parentCounterparty) {
+////        System.out.println(">>> counterparty: " + counterparty);
+////        System.out.println(">>> parent: " + parentCounterparty);
+//        em.persist(counterparty);
+//        if (parentCounterparty.getId()!=null) {
+//            counterparty.setParent(parentCounterparty);
+//        }
+//        //em.merge(parentCounterparty);
+//    }
 }

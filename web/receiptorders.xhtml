@@ -7,12 +7,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head></h:head>
 <h:body>
+    <h:form>
     <p:dataTable value="#{receiptOrderBean.receiptOrders}" var="ro">
         <p:column headerText="Дата">
             <h:outputText value="#{ro.date}"/>
         </p:column>
         <p:column headerText="Номер">
-            <h:outputText value="#{ro.number}"/>
+            <h:commandLink action="#{receiptOrderBean.show(ro)}" value="#{ro.number}"/>
         </p:column>
         <p:column headerText="Контрагент">
             <h:outputText value="#{ro.counterparty.description}"/>
@@ -20,7 +21,10 @@
         <p:column headerText="Склад">
             <h:outputText value="#{ro.storage.description}"/>
         </p:column>
-
+        <p:column headerText="qq">
+            <h:outputText value="#{ro.id*10}"/>
+        </p:column>
     </p:dataTable>
+    </h:form>
 </h:body>
 </html>

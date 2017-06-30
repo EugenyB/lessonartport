@@ -11,18 +11,32 @@
    <h:form>
       <h:panelGrid columns="2" cellpadding="5">
          <p:outputLabel value="Наименование" for="description"/>
-      <p:inputText id="description" value="#{counterpartyBean.counterparty.description}"/>
+         <p:inputText id="description" value="#{counterpartyBean.counterparty.description}"/>
          <p:outputLabel value="Код" for="code"/>
          <p:inputText id="code" value="#{counterpartyBean.counterparty.code}" />
+         <p:outputLabel value="isFolder: " for="isfolder"/>
+         <p:selectBooleanCheckbox id="isfolder" value="#{counterpartyBean.counterparty.folder}" />
+         <p:outputLabel value="Каталог:" for="folder" />
+         <p:autoComplete id="folder" value="#{counterpartyBean.counterparty.parent}"
+                         completeMethod="#{counterpartyBean.completeParent}"
+                         var="parent" itemLabel="#{parent.description}" itemValue="#{parent}"
+                         converter="#{counterpartyConverter}" forceSelection="true" />
+
       </h:panelGrid>
-      <p:commandButton value="Добавить" action="#{counterpartyBean.add}"/>
+      <p:commandButton value="Добавить" action="#{counterpartyBean.add}" ajax="false"/>
    </h:form>
-   <p:dataTable value="#{counterpartyBean.counterparties}" var="c">
-      <p:column headerText="id">
+   <p:dataTable value="#{counterpartyBean.counterparties}" var="c" resizableColumns="true" draggableColumns="true">
+      <p:column headerText="id" style="width: 50px;">
          <h:outputText value="#{c.id}"/>
+      </p:column>
+      <p:column headerText="code" style="width: 100px;">
+         <h:outputText value="#{c.code}"/>
       </p:column>
       <p:column headerText="description">
          <h:outputText value="#{c.description}"/>
+      </p:column>
+      <p:column headerText="parent">
+         <h:outputText value="#{c.parent.description}"/>
       </p:column>
    </p:dataTable>
 </h:body>
