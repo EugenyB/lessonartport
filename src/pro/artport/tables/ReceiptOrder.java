@@ -1,6 +1,7 @@
 package pro.artport.tables;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -25,6 +26,10 @@ public class ReceiptOrder {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getFormattedDate() {
+        return String.format("%1$te %1$tB %1$tY", date);
     }
 
     public void setDate(Date date) {
@@ -84,5 +89,16 @@ public class ReceiptOrder {
 
     public void setStorage(Storage storage) {
         this.storage = storage;
+    }
+
+    @OneToMany(mappedBy = "receiptOrder")
+    private Collection<ReceiptOrderGood> goods;
+
+    public Collection<ReceiptOrderGood> getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Collection<ReceiptOrderGood> goods) {
+        this.goods = goods;
     }
 }

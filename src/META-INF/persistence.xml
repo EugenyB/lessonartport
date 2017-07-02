@@ -5,6 +5,7 @@
         <jta-data-source>jdbc/artport</jta-data-source>
         <class>pro.artport.tables.Nomenclature</class>
         <class>pro.artport.tables.ReceiptOrder</class>
+        <class>pro.artport.tables.ReceiptOrderGood</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>

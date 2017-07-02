@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Документ № #{receiptOrderBean.ro.number} </title>
+    <h:outputScript library="js" name="ru_calendar.js"/>
 </h:head>
 <h:body>
     <h1>Документ № #{receiptOrderBean.ro.number}</h1>
@@ -19,7 +20,7 @@
                 </td>
                 <td>
                     <p:outputLabel value="Дата" for="date"/>
-                    <p:calendar id="date" value="#{receiptOrderBean.ro.date}" showOn="button" />
+                    <p:calendar id="date" lang="ru" locale="ru" value="#{receiptOrderBean.ro.date}" showOn="button" />
                 </td>
                 <td>
                     <p:outputLabel value="Склад" for="storage"/>
@@ -34,6 +35,33 @@
             </tr>
         </table>
         <!--TODO Вывод таблицы-->
+        <h:panelGroup rendered="#{not empty receiptOrderBean.ro.goods}">
+        <p:dataTable value="#{receiptOrderBean.ro.goods}" var="good">
+            <p:column headerText="№">
+                <h:outputText value="#{good.stringNumber}"/>
+            </p:column>
+            <p:column headerText="Номенклатура">
+                <h:outputText value="#{good.nomenclature.description}"/>
+            </p:column>
+            <p:column headerText="Количество">
+                <h:outputText value="#{good.quantity}"/>
+            </p:column>
+        </p:dataTable>
+        </h:panelGroup>
+        <p:outputLabel value="Новая запись"/>
+        <h:panelGroup>
+            <h:panelGrid columns="5" cellpadding="5">
+                <p:outputLabel value="Номенклатура" for="nomenclature"/>
+                <p:selectOneMenu id="nomenclature" value="#{receiptOrderBean.nomenclature}" effect="fold" editable="false" converter="#{nomenclatureConverter}" forceSelection="true" >
+                    <f:selectItems value="#{receiptOrderBean.nomenclatures}" />
+                </p:selectOneMenu>
+                <p:outputLabel for="stringNumber" value="Номер в строке" />
+                <p:spinner value="#{receiptOrderBean.stringNumber}" id="stringNumber"/>
+                <p:outputLabel value="Количество" for="quantity"/>
+                <p:spinner id="quantity" value="#{receiptOrderBean.quantity}" />
+                <p:commandButton value="Добавить" action="#{receiptOrderBean.addNomenclatureToOrder}" ajax="false"/>
+            </h:panelGrid>
+        </h:panelGroup>
     </h:form>
 </h:body>
 </html>

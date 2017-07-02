@@ -2,6 +2,7 @@ package pro.artport.beans;
 
 import pro.artport.dao.CounterpartyDAO;
 import pro.artport.tables.Counterparty;
+import pro.artport.tables.Nomenclature;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -41,11 +42,7 @@ public class CounterpartyBean implements Serializable {
     }
 
     public void add() {
-//        if (counterparty.isFolder()) {
-            counterpartyDAO.add(counterparty);//, parentCounterparty);
-//        } else {
-//            counterpartyDAO.addInFolder(counterparty, parentCounterparty);
-//        }
+        counterpartyDAO.add(counterparty);//, parentCounterparty);
         counterparty = new Counterparty();
     }
 

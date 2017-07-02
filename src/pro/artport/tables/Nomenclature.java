@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Nomenclature.FindAll", query = "select n from Nomenclature n")
+})
 public class Nomenclature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -107,5 +110,16 @@ public class Nomenclature {
     @Override
     public String toString() {
         return String.format("(%s) %s", code, description);
+    }
+
+    @OneToMany(mappedBy = "nomenclature")
+    private Collection<ReceiptOrderGood> receiptOrderGoods;
+
+    public Collection<ReceiptOrderGood> getReceiptOrderGoods() {
+        return receiptOrderGoods;
+    }
+
+    public void setReceiptOrderGoods(Collection<ReceiptOrderGood> receiptOrderGoods) {
+        this.receiptOrderGoods = receiptOrderGoods;
     }
 }

@@ -10,7 +10,7 @@
     <h:form>
     <p:dataTable value="#{receiptOrderBean.receiptOrders}" var="ro">
         <p:column headerText="Дата">
-            <h:outputText value="#{ro.date}"/>
+            <h:outputText value="#{ro.formattedDate}"/>
         </p:column>
         <p:column headerText="Номер">
             <h:commandLink action="#{receiptOrderBean.show(ro)}" value="#{ro.number}"/>
